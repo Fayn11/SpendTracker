@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block style %}
+    .container {
+        width: 30%;
+        max-width: 1800px;
+        background-color: white;
+        padding: 20px;
+        box-shadow: 0 0 100px rgba(0, 0, 0, 0.1);
+        box-sizing: border-box;
+        margin: 0 auto;
+    }
+{% endblock %}
+{% block content %}
+    <div class="container">
+        <h1>Today`s Currency Exchange:</h1>
+        <div style="display: flex;">
+            <div style="flex: 1; margin-right: -10px;">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Currency</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for currency in base_currency %}
+                            <tr>
+                                <td>{{ currency }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div style="flex: 1; margin-left: 10px;">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Rate</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for rate in rates %}
+                            <tr>
+                                <td>{{ rate }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}

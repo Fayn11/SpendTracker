@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block style %}
+    .container {
+    width: 50%;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 0 100px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    margin: 0 auto;
+    }
+    .container p {
+    font-size: 50px; /* Adjust the font size as needed */
+    }
+    .container span {
+        font-size: 30px; /* Adjust the font size as needed */
+        }
+    .button-container {
+        text-align: center;
+    }
+    .button-container a {
+        margin: 0 5px; /* Spațiu între butoane */
+        padding: 10px 20px; /* Ajustează spațiul pentru a face butoanele mai mari */
+        font-size: 32px; /* Mărește dimensiunea textului pentru a se potrivi cu butoanele mai mari */
+    }
+
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <p>Your transaction has been recorded!</p>
+        <span>Would you like to register another transaction?</span>
+        <div class="button-container">
+            <a class="btn btn-md btn-success" href="/home/update_balance">Da</a>
+            <a class="btn btn-md btn-danger" href="/home">Nu</a>
+    </div>
+    </div>
+{% endblock %}

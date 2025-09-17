@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% block style %}
+    .container {
+        width: 50%;
+        background-color: white;
+        padding: 20px;
+        box-shadow: 0 0 100px rgba(0, 0, 0, 0.1);
+        box-sizing: border-box;
+        margin: 0 auto;
+    }
+{% endblock %}
+{% block content %}
+    <div class="container">
+        <h1>Hello {{ request.user }}!</h1>
+        <h2>Your balance is: {{ balanta }} Euro</h2>
+        <br>
+        <a class="btn btn-md btn-success" href="/home/update_balance">Update Balance</a>
+        <br>
+        <br>
+        <h2>Balance Evolution Graph:</h2>
+        <canvas id="balanceChart"></canvas>
+        <br>
+        <br>
+        <h2>Expenses Evolution Graph:</h2>
+        <canvas id="expensesChart"></canvas>
+        <br>
+        <br>
+        <h2>Income Evolution Graph:</h2>
+        <canvas id="incomeChart"></canvas>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        var ctx1 = document.getElementById('balanceChart').getContext('2d');
+        var balanceChart = new Chart(ctx1, {
+            type: 'line',
+            data: {
+                labels: [{% for date in dates %}"{{ date }}", {% endfor %}],
+                datasets: [{
+                    label: 'Balance',
+                    data: [{% for balance in balances %}{{ balance }}, {% endfor %}],
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+
+        var ctx2 = document.getElementById('expensesChart').getContext('2d');
+        var expensesChart = new Chart(ctx2, {
+            type: 'line',
+            data: {
+                labels: [{% for date in dates %}"{{ date }}", {% endfor %}],
+                datasets: [{
+                    label: 'Expenses',
+                    data: [{% for expense in expenses %}{{ expense }}, {% endfor %}],
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+        var ctx3 = document.getElementById('incomeChart').getContext('2d');
+        var incomeChart = new Chart(ctx3, {
+            type: 'line',
+            data: {
+                labels: [{% for date in dates %}"{{ date }}", {% endfor %}],
+                datasets: [{
+                    label: 'Income',
+                    data: [{% for income in incomes %}{{ income }}, {% endfor %}],
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
+{% endblock %}

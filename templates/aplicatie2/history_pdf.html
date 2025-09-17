@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaction History</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+    </style>
+</head>
+<body>
+    <h1>Transaction History for {{ user }}</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Index</th>
+                <th>Amount</th>
+                <th>Type of transaction</th>
+                <th>Category</th>
+                <th>Date</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in user_transactions %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ item.amount }}</td>
+                    <td>{{ item.expense_or_income }}</td>
+                    <td>{{ item.category }}</td>
+                    <td>{{ item.date }}</td>
+                    <td>{{ item.description }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

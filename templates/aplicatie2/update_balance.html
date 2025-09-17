@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block style %}
+    .container {
+        width: 50%;
+        background-color: white;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        box-sizing: border-box;
+        margin: 0 auto; /* Centers the container horizontally */
+    }
+
+    .form-group {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 20px;
+        font-size: 20px;
+    }
+    .form-group label {
+        width: 30%;
+        margin-right: 20px;
+        text-align: right;
+        font-weight: bold;
+    }
+    .form-group input, .form-group select, .form-group textarea {
+        width: 65%;
+        padding: 10px;
+        box-sizing: border-box;
+        font-size: 18px;
+    }
+    .btn {
+        width: 100%;
+        padding: 10px;
+        font-size: 18px;
+    }
+    .text-danger {
+        color: #dc3545;
+    }
+{% endblock %}
+{% block content %}
+    <div class="container">
+            <form method="post">
+                {% csrf_token %}
+                {% for field in form %}
+                    <div class="form-group">
+                        {{ field.label_tag }}
+                        {{ field }}
+                        <span class="text-danger small">{{ field.errors }}</span>
+                    </div>
+                {% endfor %}
+                <button type="submit" class="btn btn-success btn-block">Save</button>
+            </form>
+    </div>
+{% endblock %}

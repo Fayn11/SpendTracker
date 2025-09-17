@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% block style %}
+        .container {
+            width: 70%;
+            max-width: 1800px;
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 0 100px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
+            margin: 0 auto;
+        }
+
+        .container p {
+            font-size: 50px;
+        }
+
+        .description {
+            max-width: 1200px;
+            word-wrap: break-word;
+        }
+        .form-group {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+            font-size: 30px;
+        }
+        .form-group label {
+            width: 50%;
+            margin-right: 20px;
+            text-align: center;
+            font-size: 25px;
+
+        }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 65%;
+            padding: 5px;
+            box-sizing: border-box;
+            font-size: 25px;
+        }
+{% endblock %}
+{% block content %}
+    <div class="container">
+        <p>Transactions history</p>
+            <form method="get">
+                <div class="form-group">
+                    {{ filter.form.as_p }}
+                </div>
+                <button class="btn btn-lg btn-block btn-primary" type="submit">Filtrare</button>
+            </form>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Index</th>
+                    <th>Amount</th>
+                    <th>Type of transaction</th>
+                    <th>Category</th>
+                    <th id="date-header">Date</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in tranzactie_list %}
+                    <tr>
+                        <th>{{ forloop.counter }}</th>
+                        <th>{{ item.amount}}</th>
+                        <th>{{ item.expense_or_income }}</th>
+                        <th>{{ item.category }}</th>
+                        <th>{{ item.date }}</th>
+                        <th class="description">{{ item.description }}</th>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a class="btn btn-lg btn-block btn-success" href="{% url 'home:export_history_pdf' %}">Export to PDF</a>
+    </div>
+{% endblock %}

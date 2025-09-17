@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% load static %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpendTracker</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #4CAF50; /* culoare verde */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .container1 {
+            text-align: center;
+            width: 80%;
+            padding: 50px;
+            margin-top: 50px;
+            margin-bottom: 50px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            position: relative; /* pentru poziționarea butonului pe imagine */
+        }
+        h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            color: #666;
+        }
+        ul {
+            text-align: center; /* Centrare lista */
+            margin-bottom: 30px;
+            color: #666;
+            padding-left: 0;
+        }
+        li {
+            margin-bottom: 20px;
+            list-style-type: none;
+            font-size: 32px; /* mărime mai mare pentru facilități */
+        }
+        .start-button {
+            display: inline-block;
+            padding: 15px 30px;
+            font-size: 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            position: absolute; /* poziționare absolută */
+            bottom: 20px; /* distanță de la marginea de jos */
+            left: 50%; /* aliniere pe orizontală la mijloc */
+            transform: translateX(-50%); /* corectare pentru centrare */
+            width: auto; /* lățime automată */
+        }
+        .start-button:hover {
+            background-color: #45a049;
+        }
+        .summary {
+            font-size: 18px;
+            margin-bottom: 20px;
+            text-align: left; /* Ajustare la stânga pentru rezumate */
+            padding: 0 20%; /* Lățimea rezumatului */
+        }
+        .image-container {
+            position: relative; /* necesar pentru a poziționa butonul corect */
+            width: 100%; /* lățime completă */
+            margin-bottom: 20px; /* spațiere între imagini */
+        }
+        .image-container img {
+            width: 100%; /* imaginea va umple complet containerul */
+            height: auto;
+        }
+        .link-on-image {
+            position: absolute; /* setăm poziționarea absolută */
+            bottom: 1045px; /* poziționăm butonul la 20px de marginea de jos a imaginii */
+            left: 49%; /* poziționăm butonul la 50% din lățimea imaginii */
+            transform: translate(-50%, -50%); /* centram butonul */
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 40px;
+            z-index: 1; /* asigură poziționarea butonului deasupra imaginii */
+        }
+
+        .link-on-image:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container1">
+        <div class="image-container">
+            <img src="{% static 'media/poza1.jpg' %}" alt="poza1">
+        </div>
+        <div class="image-container">
+            <img src="{% static 'media/poza4.jpg' %}" alt="poza4">
+            <a href="/login" class="start-button link-on-image">Get Started Now</a>
+        </div>
+        <div class="image-container">
+            <img src="{% static 'media/poza2.jpg' %}" alt="poza2">
+        </div>
+        <div class="image-container">
+            <img src="{% static 'media/poza3.jpg' %}" alt="poza3">
+        </div>
+
+    </div>
+</body>
+<footer>
+    <p>&copy;Bâlici Bogdan</p>
+</footer>
+</html>
